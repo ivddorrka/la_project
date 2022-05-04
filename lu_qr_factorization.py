@@ -35,6 +35,25 @@ def qr_factorization(A):
     '''
     return np.linalg.qr(A)
 
+def qr_factorization_imp(A):
+    '''
+    source: http://mlwiki.org/index.php/Gram-Schmidt_Process
+    https://ristohinno.medium.com/qr-decomposition-903e8c61eaab
+    '''
+    m, n = A.shape
+    Q = np.zeros((m, n))
+    R = np.zeros((n, n))
+    for j in range(n):
+        v = A[:, j]
+        for i in range(j - 1):
+            q = Q[:, i]
+            R[i, j] = q @ v
+            v = v - R[i, j] * q
+        norm = np.linalg.norm(v)
+        Q[:, j] = v / norm
+        R[j, j] = norm
+    return Q, R
+
 if __name__ == "__main__":
     # A = np.array([[12, -51, 4], [6, 167, -68], [-4, 24, -41]], dtype=np.double)
 
@@ -72,3 +91,10 @@ A = np.random.random((10, 10))
     0.006281166000007943  lu - 10 - 100
     0.0027356849996067467 qr - 10 - 100
     """
+
+    A = np.array([[12, -51, 4], [6, 167, -68], [-4, 24, -41]], dtype=np.double)
+    q, r = qr_factorization(A)
+    qq, rr = qr_factorization_imp(A)
+    
+    print(np.allclose(A, q@r))
+    print(np.allclose(A, qq@rr))
