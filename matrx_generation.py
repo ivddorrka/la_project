@@ -16,3 +16,11 @@ def generate_hermitian(row_col_number):
     A_T = A.transpose();
     A = 0.5*(A+A_T)
     return A
+
+def generate_random_matrix(n, m):
+    A = np.random.randint(1000, size=(n, m))
+    return A
+
+
+def generate_identity_m(n):
+    return [[(i == j) for i in range(n)] for j in range(n)]
