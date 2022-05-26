@@ -1,4 +1,5 @@
 from matrx_generation import *
+import matplotlib.pyplot as plt
 
 
 
@@ -55,9 +56,38 @@ def obtain_QR(A, n, m):
     return Q, R
 
 
-# A = scipy.array([[12, -51, 4], [6, 167, -68], [-4, 24, -41]])  # From the Wikipedia Article on QR Decomposition
-A = generate_random_matrix(3, 3)
-res = obtain_QR(A, 3, 3)
-print(res[0])
-print(res[1])
 
+# A = generate_random_matrix(3, 3)
+# res = obtain_QR(A, 3, 3)
+# print(res[0])
+# print(res[1])
+
+# lst_sizes = []
+
+# lst_times_algo = []
+# i =2
+
+# while i <= 1025:
+#     n = i
+#     matrix = generate_random_matrix(n, n)
+#     # print(matrix)
+#     start = time.time()
+#     res_nmp = obtain_QR(matrix, n, n)
+#     end = time.time()
+#     res_time = end-start
+#     lst_times_algo.append(res_time)
+#     lst_sizes.append(n)
+#     i = i*2
+
+
+lst_sizes = [10, 100, 250, 500, 1000]
+time_lu = [0.00028228759765625,  0.003760099411010742, 0.02787303924560547, 0.18905925750732422, 1.424250602722168]
+time_qr = [0.0005943775177001953, 0.04143881797790527, 0.2863280773162842, 1.0971922874450684, 6.1295459270477295]
+
+
+plt.plot(lst_sizes, time_lu)
+plt.show()
+
+
+plt.plot(lst_sizes, time_qr)
+plt.show()
