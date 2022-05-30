@@ -285,4 +285,7 @@ The final table we get from the graph would be:
 
 33 is the maximum value of Z and it occurs at C, thus the solution is $x=4$ and $y=5$
 
+<<<<<<< HEAD
 ##  Gurobi optimization approach 
+=======
+>>>>>>> ede0559848d90a3671c5c90c13e10f496a460dec
